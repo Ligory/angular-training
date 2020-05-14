@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
+class Shipping{
+  constructor(public type:string,public price:number){}
+}
 
 @Injectable()
 export class CartService {
@@ -23,7 +26,8 @@ addToCart(product) {
   }
 
  getShippingPrices() {
-    return this.http.get('/assets/shipping.json');
+    return this.http.get<Shipping[]>('/assets/shipping.json');
   }
   
 }
+
